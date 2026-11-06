@@ -215,6 +215,8 @@ fieldset{border:0;margin:0;padding:0}
 
 /* guide */
 .guide{display:grid;gap:14px}
+.guide>*{min-width:0}
+@media (max-width:600px){.tbl-wrap table{min-width:0}.tbl-wrap thead{display:none}.tbl-wrap tr{display:block;padding:10px 0;border-bottom:1px solid var(--line)}.tbl-wrap td{display:block;border:0;padding:2px 0}.tbl-wrap td[data-l]::before{content:attr(data-l) ": ";font-weight:700;color:var(--muted)}}
 @media (min-width:860px){.guide{grid-template-columns:repeat(2,minmax(0,1fr))}.guide .wide{grid-column:1/-1}}
 .guide h2{font-size:24px;margin-bottom:8px}
 .guide p{margin:0 0 8px;max-width:68ch}
@@ -705,7 +707,7 @@ function renderGuide(){
   <div class="card wide"><h2>Intensidade: como saber se está certo</h2>
    <p>Iniciante não precisa de relógio. O melhor termômetro é a fala. As faixas de batimento usam a sua FC máxima estimada de <b class="num">${fc} bpm</b> (fórmula 208 − 0,7 × idade).</p>
    <div class="tbl-wrap"><table class="num"><thead><tr><th>Ritmo</th><th>Esforço (0–10)</th><th>Teste da fala</th><th>Batimentos</th></tr></thead><tbody>
-   ${['cam','solto','leve','mod','prova'].map(k=>`<tr><td><span class="int"><i style="background:${INT[k].c}"></i></span> <b>${INT[k].n}</b></td><td>${INT[k].rpe}</td><td>${INT[k].fala}</td><td>${b(INT[k].z[0],INT[k].z[1])} bpm</td></tr>`).join('')}
+   ${['cam','solto','leve','mod','prova'].map(k=>`<tr><td><span class="int"><i style="background:${INT[k].c}"></i></span> <b>${INT[k].n}</b></td><td data-l="Esforço">${INT[k].rpe} de 10</td><td data-l="Fala">${INT[k].fala}</td><td data-l="Batimentos">${b(INT[k].z[0],INT[k].z[1])} bpm</td></tr>`).join('')}
    </tbody></table></div></div>
   <div class="card"><h2>Esquenta: aquecimento antes de todo treino</h2><ol class="steps">
    <li>5 min de caminhada, acelerando aos poucos.</li><li>10 círculos de tornozelo para cada lado.</li><li>10 rotações de quadril e 10 balanços de perna à frente.</li><li>2× 20 s de skipping leve (joelhos à altura do quadril).</li></ol></div>
